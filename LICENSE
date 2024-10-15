@@ -1,0 +1,1 @@
+This pipeline contains code from [Oxford Nanopore Technologies' 10X snRNA-seq pipeline](https://github.com/epi2me-labs/wf-single-cell). Therefore, as required, this pipeline is governed by the terms of [their license](https://github.com/epi2me-labs/wf-single-cell/blob/master/LICENSE). We thank ONT for their efforts.
