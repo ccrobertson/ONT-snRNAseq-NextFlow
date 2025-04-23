@@ -170,7 +170,9 @@ process tag_bam_and_make_count_matrices_and_calculate_qc_metrics {
 
 }
 
-
+// changed to use trim-for-scafe-fixed.py
+// old command:
+// trim-for-scafe.py --input-bam $bam --output-bam ${meta.alias}.trimmed.unsorted.bam --trim-to 100 --ggg-mismatches-allowed 1
 process trim_for_scafe {
 
     publishDir "${params.out_dir}/${meta.alias}/trim-for-scafe", mode: 'copy'
@@ -185,7 +187,7 @@ process trim_for_scafe {
     tuple val(meta), path("${meta.alias}.trimmed.bam"), path("${meta.alias}.trimmed.bam.bai")
 
     """
-    trim-for-scafe.py --input-bam $bam --output-bam ${meta.alias}.trimmed.unsorted.bam --trim-to 100 --ggg-mismatches-allowed 1
+    trim-for-scafe-fixed.py --max-softclipping 4 --input-bam $bam --output-bam ${meta.alias}.trimmed.unsorted.bam
     samtools sort -m 3G -o ${meta.alias}.trimmed.bam ${meta.alias}.trimmed.unsorted.bam
     samtools index ${meta.alias}.trimmed.bam
     """
